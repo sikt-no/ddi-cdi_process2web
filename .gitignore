@@ -52,3 +52,4 @@ Thumbs.db
 
 _build/
 _rst/
+sphinx/_static/description.js
