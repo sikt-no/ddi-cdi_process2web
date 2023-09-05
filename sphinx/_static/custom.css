@@ -1,0 +1,64 @@
+@import "ess.css";
+
+div.document {
+	background-color: var(--color-light-gray);
+}
+
+div.body {
+	min-height: 73vh;
+}
+
+# workaround for empty index
+XXdiv.related ul>li:first-of-type {
+	display: none;
+}
+
+div#sidebarbutton {
+	border-left: 4px !important;
+	min-height: 73vh !important;
+}
+
+div.sphinxsidebar li {
+	list-style:disclosure-closed;
+}
+
+div.sphinxsidebar li.current {
+	list-style:disclosure-open;
+}
+
+div.sphinxsidebar li.dot:before {
+	content: '\2043'; /* Hyphen Bullet: ⁃ */
+	margin-left: -1em;
+	margin-right: 0.6em;
+}
+
+li.current > a {
+	font-weight: bold;
+}
+
+div.admonition {
+	font-size: 70%;
+	width: fit-content;
+	background-color: #eeeeee;
+}
+
+p.sequence-title, p.step-title {
+	font-size: 130%;
+}
+
+.step-diagram {
+	min-width: 70em;
+}
+
+@media print {
+	.diagram {
+		height: 500px;
+	}
+}
+
+/* SVG */
+object.step-legend {
+	float: right;
+	margin-top: -3em;
+	margin-right: 9.5em;
+}

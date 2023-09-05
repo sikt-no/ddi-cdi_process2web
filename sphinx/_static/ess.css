@@ -1,0 +1,161 @@
+:root {
+  --font-family-sans: "Noto Sans",sans-serif;
+  --font-family-serif: "Noto Serif",serif;
+  --color-black: #36374b;
+  --color-dark-gray: #32373e;
+  --color-gray: #a8a8a8;
+  --color-light-gray: #eee;
+  --color-white: #fff;
+  --color-accent: #ea4d36;
+  --color-brown: #370101;
+  --color-brown-light: #7c0602;
+  --color-red-dark: #ad1400;
+  --color-red: #ea4d36;
+  --color-red-light: #fce1dd;
+  --color-pink-light: #f6bfb7;
+  --color-orange: #e07220;
+  --color-yellow: #feb249;
+  --color-yellow-light: #fef0e6;
+  --color-blue: #698da1;
+  --color-turquoise: #2dbdbd;
+  --font-size-x-small: 0.8rem;
+  --font-size-small: 1rem;
+  --font-size-medium: 1.3rem;
+  --font-size-large: 1.65rem;
+  --font-size-x-large: 2.4rem;
+  --space-xx-small: 0.25rem;
+  --space-x-small: 0.5rem;
+  --space-small: 1rem;
+  --space-medium: 1.5rem;
+  --space-large: 3rem;
+  --space-x-large: 4rem;
+  --space-xx-large: 6rem;
+  --space-xxx-large: 8rem;
+  --divider-line: 1px dashed var(--color-light-gray);
+  --outline-width: 3px;
+}
+
+body {
+	font-family: var(--font-family-sans);
+	color: var(--color-black);
+}	
+
+div.document {
+	background-color: var(--color-light-gray);
+}
+
+div.related {
+	background-color: var(--color-red-dark);
+}
+
+div.related a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+div#searchbox {
+	border-color: #0ebeff;
+}
+
+html a:link, a:visited, a.external:link, a.external:visited {
+	color: var(--color-black);
+	text-decoration: underline;
+	text-decoration-color: var(--color-red-dark);
+}
+
+html a.external {
+	border-bottom: 0px;
+}
+
+html a:hover, a.external:hover {
+	color: var(--color-red-dark);
+	cursor: pointer;
+}
+
+p.logo {
+	/* margin-top: -6px; */
+	margin-left: 2em;
+	margin-right: 2em;
+	margin-top: 0.7em;
+	margin-top: 0.4em;
+	background-color: var(--color-light-gray);
+}
+
+div#sidebarbutton {
+	background-color: var(--color-gray);
+	color: var(--color-black) !important;
+}
+
+div.sphinxsidebar {
+	background-color: var(--color-light-gray);
+}
+
+div.sphinxsidebar, div.sphinxsidebar h3, div.sphinxsidebar h3 a {
+	color: var(--color-black);
+}
+
+div.sphinxsidebar li {
+	color: var(--color-black);
+}
+
+div.sphinxsidebar li.current {
+	color: var(--color-black);
+}
+
+div.sphinxsidebar li.dot:before {
+	color: var(--color-black);
+}
+
+div.sphinxsidebar a {
+	color: var(--color-black);
+}
+
+div.sphinxsidebar a:hover{
+	color: var(--color-red-dark);
+	cursor: pointer;
+}
+
+/* sphinx footer */
+div.footer {
+	background-color: var(--color-light-gray);
+	color: #454545;
+}
+
+/* ESS footer */
+footer {
+	color: #454545;
+	padding-top: 10px;
+	background-color: var(--color-light-gray);
+	border-top: 2px solid #b11402;
+	overflow: hidden;
+	width: 100%;
+	display: block;
+	clear: both;
+}
+
+.signature {
+	margin: 0 auto;
+	padding-top: 40px;
+	color: #454545;
+	width: 860px;
+	padding-bottom: 80px;
+	font-size: 11px;
+	font-family: verdana,lucida;
+}
+
+.someicon, .twittericon {
+	float: right;
+	width: 30px;
+	height: 30px;
+	padding-left: 2px;
+}
+
+/* SVG  */
+svg a text {
+	text-decoration: none ;
+}
+
+/* svg a:hover text { */
+svg a:link:hover {
+	text-decoration: underline;
+}
