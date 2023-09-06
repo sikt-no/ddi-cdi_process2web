@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<!--
+
 	configuration
+
+	Colors based on the tool of Sasha Trubetskoy
+	https://sashamaps.net/docs/resources/20-colors/, accessibility 99,99%.
+
 	-->
 	<xsl:variable name="CSSFilename" select=" '../_static/custom.css' "/>
 	<xsl:variable name="DotFontName" select=" 'sans-serif' "/>
 	<xsl:variable name="DotActivityShape" select=" 'rect' "/>
 	<xsl:variable name="DotActivityStyle" select=" 'filled, rounded' "/>
 	<xsl:variable name="DotActivityWidth" select=" '3' "/>
+	<xsl:variable name="DotSecondaryActivityWidth" select=" '2' "/>
 	<xsl:variable name="DotActivityFontColor" select=" 'white' "/>
 	<xsl:variable name="DotActivityFontSize" select=" '13pt' "/>
 	<!-- blue -->
@@ -22,4 +28,5 @@
 	<!-- lavender -->
 	<xsl:variable name="DotOutputParameterFillColor" select=" '#dcbeff' "/>
 	<xsl:variable name="DotLinkColor" select=" 'blue' "/>
+	<xsl:variable name="DotEdgeMinLen" select=" '2' "/>
 </xsl:stylesheet>

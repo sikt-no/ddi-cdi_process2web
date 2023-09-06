@@ -76,7 +76,7 @@ function name="mf:DotIdentifier" as="xs:string">
 	<xsl:include href="DDI-CDI_process_configuration.xslt"/>
 	<!--
 	parameter -->
-	<xsl:param name="ColecticaPrefix" select=" 'https://colectica-ess-processing.nsd.no/item/int.esseric/' "/>
+	<xsl:param name="PortalPrefix" select=" 'https://colectica-ess-processing.nsd.no/item/int.esseric/' "/>
 	<xsl:param name="DDI33_Study"/>
 	<!--
 	computed variables -->
@@ -317,6 +317,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 			<xsl:text>digraph Diagram {{
 	graph [
 		stylesheet="{$CSSFilename}"
+		fontnames = "svg" # "... rock solid standards compliant SVG", see: https://graphviz.org/faq/font/#what-about-svg-fonts
 		rankdir="LR"
 		nodesep="0.7"
 		ranksep="2"
@@ -376,6 +377,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		<xsl:text>digraph Diagram {{
 	graph [
 		stylesheet="{$CSSFilename}"
+		fontnames = "svg" # "... rock solid standards compliant SVG", see: https://graphviz.org/faq/font/#what-about-svg-fonts
 		rankdir="LR"
 		tooltip=" "
 	];
@@ -484,6 +486,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		<xsl:text>digraph Diagram {{
 	graph [
 		stylesheet="{$CSSFilename}"
+		fontnames = "svg" # "... rock solid standards compliant SVG", see: https://graphviz.org/faq/font/#what-about-svg-fonts
 		rankdir="LR"
 		nodesep="0.15"
 		tooltip=" "
@@ -538,7 +541,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		fillcolor="{$DotInputParameterFillColor}"
 	];
 	{$Entity}:e -> {$Activity}:w [
-		minlen="2"
+		minlen="{$DotEdgeMinLen}"
 	];
 </xsl:text>
 	</xsl:template>
@@ -557,7 +560,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		<xsl:text>	{$Entity} [
 		shape="{$DotParameterShape}"
 		style="{$DotParameterStyle}"
-		width="2"
+		width="{$DotParameterWidth}"
 		height="0.1"
 		fontcolor="{$DotLinkColor}"
 		fontsize="{$DotParameterFontSize}"
@@ -568,7 +571,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		fillcolor="{$DotOutputParameterFillColor}"
 	];
 	{$Activity}:e -> {$Entity}:w [
-		minlen="2"
+		minlen="{$DotEdgeMinLen}"
 	];
 </xsl:text>
 	</xsl:template>
@@ -580,6 +583,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 			<xsl:text>digraph Diagram {{
 	graph [
 		stylesheet="{$CSSFilename}"
+		fontnames = "svg" # "... rock solid standards compliant SVG", see: https://graphviz.org/faq/font/#what-about-svg-fonts
 		rankdir="LR"
 		nodesep="0.15"
 		tooltip=" "
@@ -617,9 +621,9 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 	<xsl:template match="cdi:Parameter" mode="dot">
 		<xsl:param name="Type"/>
 		<xsl:variable name="Parameter" select="mf:DotIdentifier( cdi:identifier/cdi:ddiIdentifier/cdi:dataIdentifier )"/>
-		<xsl:variable name="UUID" select="substring-after(cdi:entityBound/cdi:uri, $ColecticaPrefix)"/>
+		<xsl:variable name="UUID" select="substring-after(cdi:entityBound/cdi:uri, $PortalPrefix)"/>
 		<!-- see: https://www.w3.org/TR/xslt20/#d5e22881 -->
-		<xsl:variable name="VariableLabel" select="$DDI33_Study_Node/key( 'Variable', $UUID )/r:Label/r:Content"/>
+		<xsl:variable name="VariableLabel" select="$DDI33_Study_Node/key( 'Variable', $UUID )/r:Label/r:Content[@xml:lang='en']"/>
 		<xsl:variable name="VariableLabel2">
 			<xsl:if test="string-length($VariableLabel) > 0">
 				<xsl:call-template name="FormatText">
@@ -646,7 +650,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		fillcolor="{$DotInputParameterFillColor}"
 	];
 	{$Parameter}:e -> Step:w [
-		minlen="2"
+		minlen="{$DotEdgeMinLen}"
 	];
 	</xsl:text>
 				<xsl:for-each select="key('StepWithSpecificOutputParameter', cdi:identifier/cdi:ddiIdentifier/cdi:dataIdentifier)">
@@ -659,7 +663,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 					<xsl:text> [
 		shape="{$DotActivityShape}"
 		style="{$DotActivityStyle}"
-	    width="2"
+	    width="{$DotSecondaryActivityWidth}"
 	    height="0.075"
 		fontcolor="{$DotActivityFontColor}"
 		fillcolor="{$DotActivityFillColor}"
@@ -670,7 +674,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		tooltip="Previous process step:\n{$Tooltip}"
 	];
 	{$PreviousStepDotIdentifier}:e -> {$Parameter}:w [
-		minlen="2"
+		minlen="{$DotEdgeMinLen}"
 	];
 
 </xsl:text>
@@ -682,7 +686,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		fillcolor="{$DotOutputParameterFillColor}"
 	];
 	Step:e -> {$Parameter}:w [
-		minlen="2"
+		minlen="{$DotEdgeMinLen}"
 	];
 </xsl:text>
 				<xsl:for-each select="key('StepWithSpecificInputParameter', cdi:identifier/cdi:ddiIdentifier/cdi:dataIdentifier)">
@@ -695,7 +699,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 					<xsl:text> [
 		shape="{$DotActivityShape}"
 		style="{$DotActivityStyle}"
-		width="2"
+	    width="{$DotSecondaryActivityWidth}"
 		height="0.075"
 		fontcolor="{$DotActivityFontColor}"
 		fillcolor="{$DotActivityFillColor}"
@@ -706,7 +710,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 		tooltip="Following process step:\n{$Tooltip}"
 	];
 	{$Parameter}:e -> {$FollowingStepDotIdentifier}:w [
-		minlen="2"
+		minlen="{$DotEdgeMinLen}"
 	];
 
 </xsl:text>
@@ -721,6 +725,7 @@ This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written 
 			<xsl:text>digraph Diagram {{
 	graph [
 		stylesheet="{$CSSFilename}"
+		fontnames = "svg" # "... rock solid standards compliant SVG", see: https://graphviz.org/faq/font/#what-about-svg-fonts
 		rankdir="LR"
 		bgcolor="#eeeeee"
 		size="5,10!"
