@@ -18,6 +18,10 @@ div#sidebarbutton {
 	min-height: 73vh !important;
 }
 
+div.sphinxsidebarwrapper {
+	font-size: 85%;
+}
+
 div.sphinxsidebar li {
 	list-style:disclosure-closed;
 }

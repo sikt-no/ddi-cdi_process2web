@@ -3,6 +3,10 @@ $(document).ready(function() {
 	$("p.logo > a").each(function(){
 		$(this).attr('href', 'https://www.europeansocialsurvey.org/');
 	});
+	// set target to _blank for a link in div class target-blank
+	$("div.target-blank a").each(function(){
+		$(this).attr('target', '_blank');
+	});
 	// add tool tips to internal references
 	// definition is in additional description.js
 	$("a.reference.internal").each(function(){

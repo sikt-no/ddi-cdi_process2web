@@ -242,7 +242,9 @@ function name="mf:DotIdentifier" as="xs:string">
 			<xsl:value-of select="cdi:description"/>
 			<xsl:text>
 
-This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written in {cdi:scriptingLanguage/cdi:entryValue}.</xsl:text>
+.. container:: target-blank
+
+   This step uses a `script &lt;{cdi:script/cdi:commandFile/cdi:uri}&gt;`_ written in {cdi:scriptingLanguage/cdi:entryValue}.</xsl:text>
 			<xsl:if test="cdi:Step_receives_Parameter-Target or cdi:Step_produces_Parameter-Target">
 				<xsl:text>
 
