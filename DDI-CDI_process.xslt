@@ -138,6 +138,8 @@ function name="mf:DotIdentifier" as="xs:string">
 </xsl:text>
 		<xsl:apply-templates select="cdi:ControlLogic_invokes_Activity-Target/cdi:ddiReference" mode="rst_TOCEntry"/>
 		<xsl:apply-templates select="key('id', cdi:ControlLogic_invokes_Activity-Target/cdi:ddiReference/cdi:dataIdentifier)" mode="rst_Activity_File"/>
+		<xsl:text>   about.rst
+</xsl:text>
 		<!-- end of template match="cdi:Sequence" mode="rst_MainFile" -->
 	</xsl:template>
 	<!--
