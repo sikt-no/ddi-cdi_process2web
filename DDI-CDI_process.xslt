@@ -190,7 +190,7 @@ function name="mf:DotIdentifier" as="xs:string">
 
 |
 
-.. graphviz:: SubactivitiesOf_{$FileIdentifier}.dot
+.. graphviz:: subactivitiesof_{$FileIdentifier}.dot
    :align: center
    :class: diagram subactivities-diagram
 
@@ -207,7 +207,7 @@ function name="mf:DotIdentifier" as="xs:string">
 				<xsl:with-param name="Activity" select="mf:DotIdentifier( cdi:identifier/cdi:ddiIdentifier/cdi:dataIdentifier )"/>
 			</xsl:call-template>
 		</xsl:result-document>
-		<xsl:result-document href="SubactivitiesOf_{$FileIdentifier}.dot">
+		<xsl:result-document href="subactivitiesof_{$FileIdentifier}.dot">
 			<xsl:call-template name="dot_Subactivities_File"/>
 		</xsl:result-document>
 		<!-- end of template match="cdi:Activity" mode="rst_Activity_File" -->
@@ -306,7 +306,7 @@ function name="mf:DotIdentifier" as="xs:string">
 .. note::
    *Move the mouse cursor over an activity to see more information. Click on an activity to go to the corresponding page.*
 
-.. graphviz:: Overview_{mf:FileIdentifier( cdi:identifier/cdi:ddiIdentifier/cdi:dataIdentifier )}.dot
+.. graphviz:: overview_{mf:FileIdentifier( cdi:identifier/cdi:ddiIdentifier/cdi:dataIdentifier )}.dot
    :align: center
    :class: diagram overview-diagram
 </xsl:text>
@@ -317,7 +317,7 @@ function name="mf:DotIdentifier" as="xs:string">
 -->
 	<xsl:template name="dot_OverviewDiagram_File">
 		<xsl:variable name="FileIdentifier" select="mf:FileIdentifier( cdi:identifier/cdi:ddiIdentifier/cdi:dataIdentifier )"/>
-		<xsl:result-document href="Overview_{$FileIdentifier}.dot">
+		<xsl:result-document href="overview_{$FileIdentifier}.dot">
 			<xsl:text>digraph Diagram {{
 	graph [
 		stylesheet="{$CSSFilename}"
@@ -862,7 +862,7 @@ function name="mf:DotIdentifier" as="xs:string">
 	-->
 	<xsl:function name="mf:FileIdentifier" as="xs:string">
 		<xsl:param name="Identifier"/>
-		<xsl:value-of select="concat( local-name( $Identifier/../../.. ) , '_', $Identifier )"/>
+		<xsl:value-of select="lower-case( concat( local-name( $Identifier/../../.. ) , '_', $Identifier ) )"/>
 	</xsl:function>
 	<!--
 	Create identifier compliant to the DOT language grammar, see: https://graphviz.org/doc/info/lang.html

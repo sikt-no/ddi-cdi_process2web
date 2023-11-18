@@ -10,11 +10,12 @@ $(document).ready(function() {
 	// add tool tips to internal references
 	// definition is in additional description.js
 	$("a.reference.internal").each(function(){
-		// strip html file extension
-		var term = $(this).attr('href').replace(/\.html/, '');
+		// strip html file extension, strip leading '/' (Sikt server issue 2023-11-03)
+		var term = $(this).attr('href').replace(/\.html/, '').replace(/^\//, '');
+//		var term = $(this).attr('href').replace(/\.html/, '');
 		tooltip = description[term];
 		if (tooltip != undefined) {
 			$(this).attr('title', tooltip);
 		}
 	});
-})(window, document, jQuery);
+});
